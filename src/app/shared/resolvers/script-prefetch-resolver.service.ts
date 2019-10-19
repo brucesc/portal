@@ -13,7 +13,9 @@ export class ScriptPrefetchResolverService implements Resolve<any> {
   ) {}
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let appName = route.routeConfig.toString();
+    let appName = route.routeConfig.path;
+    console.log("TCL: ScriptPrefetchResolverService -> resolve -> appName", appName)
+    if (appName === 'dad') appName = 'stevenApp';
 
     return this.loader.prefetchAppScript(appName) ? true : this.router.navigate(['/home']);
   }
